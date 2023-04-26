@@ -1,61 +1,44 @@
-#include <iostream>
-#include <vector>
+#include<bits/stdc++.h>
+
 using namespace std;
+void rotate_left(int arr[], int n) {
+ 
 
+int k=0;
 
+for(int i=0 ;i<n;i++){
+if( arr[i]==0){
+    k=i;
+    break ; // fond first zero 
+}
+   
+}
 
-vector< int> remove(vector<int>&a){
+for(int j=k;j<n; j++){// start from first zro 
 
+if( arr[j]!=0){// j will find onlt non zero 
 
+    swap(arr[k], arr[j]);// when find non zero it will swap so that the zero reches the end 
+    k++;// as it keep track of the zro so ++;
+}
 
-int i=0;
-int size=a.size();
+}
 
-while(i<size){
+for(int i=0 ;i<n;i++){
 
-    if(a[i]==0){
-        break;
-    }
-    else{
-        i++;
-    }
+cout<< arr[i]<< " ";
+}
+
 }
 
 
-int k=i,j=i+1;
 
-for(int l=j;l<size;l++){
-
-    if(a[l]!=0){
-        swap(a[l],a[i]);
-        i++;
-
-    }
-}
-
-return a;
-}
-
-int main (){
-int arr1[]={0,1,0,11,0,14,13};
-int i=0;
-int m=sizeof(arr1)/sizeof(arr1[0]);
-vector<int> a;
-while(i<m){
-
-    a.push_back(arr1[i]);
-    i++;
-}
-
-remove(a);
+int main() {
+  int n=8;
+  
+  int arr[]= {1,2,0,3,4, 0 ,5, 0 , 1};
 
 
 
-for(i=0;i<a.size();i++){
-
-    cout<< a[i]<<" ";
-}
-
-
-    return 0;
+  rotate_left(arr, n);
 }
