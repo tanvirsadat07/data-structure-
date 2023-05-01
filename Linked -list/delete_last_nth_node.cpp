@@ -19,10 +19,13 @@ public:
 class LinkedList{
     public:
     node * head;
+    int size;
 
     LinkedList(){
         head=NULL;
+        size=0;
     }
+    
 
     node *n(int value){
         node *x=new node;
@@ -33,6 +36,7 @@ class LinkedList{
     
     void insert_head(int val) {
     node *new_node = n(val);
+    size++;
         if(head==NULL){
           head =new_node;
         }
@@ -42,7 +46,9 @@ class LinkedList{
        }
     }
 
-    
+    int sz(){
+        return size;
+    }
 
    void print() {
         node *current = head;
@@ -52,68 +58,50 @@ class LinkedList{
         }
         cout << endl;
     }
+void del_nth_node_from_end(int number){
 
+size--;
+    node *dummy=n(-1);// make a dummy node which will bne before the head ;
+    dummy->next=head;
+    node* slow=dummy;
+    node* fast=dummy;
 
-node*  mid(){
-    int count=0;
-    node *a=head;
-
-    while(a!=NULL){
-        count++;
-        a=a->next;
+    for(int i=0;i<number ;i++){
+        fast=fast->next;
     }
-   int  mid=count/2;
-   node * b=head;
-     for(int i=0;i<mid;i++){
-        b=b->next;
-
-     }
-     return b;
-
-
-}
-   
-node*  mid2(){
-   
-    node *slow=head;
-    node  * fast=head ;
-
-   while (fast &&fast->next)
-    {
-        fast=fast->next->next;
+    while(fast->next){
+        fast=fast->next;
         slow=slow->next;
+    }
+    slow->next=slow->next->next;
+
+    head=dummy->next;
+
+
+
+}
+//solution-2
+void del_nth_node_from_end_2(int number){
+
+int move=sz()-number;
+node* dummy=n(-1);
+dummy->next=head;
+
+node *point=dummy;
+
+
+
+    for(int i=0 ; i<move;i++){
+        point=point->next;
+
 
     }
- 
+    point->next=point->next->next;
 
-     
-     return slow;
-
-
-}
-
-void rev(){
-
-node * prex=NULL;
-node * current=head;
-
-
-while(current){
-    node *after=current->next;
-    current->next=prex;
-    prex=current;
-    current=after;
-
-
-
-
-}
-head=prex;
+    head=dummy->next;
 
 }
 };
-
-
 
 
 int main(){
@@ -121,12 +109,12 @@ int main(){
    
    l. insert_head(10);
     l. insert_head(20);
-    l. insert_head(30);
      l. insert_head(30);
-   node *x=l.mid2();
-   cout<<x->val;
 
+    l.del_nth_node_from_end_2(1);
+    
 
-  // l.print();
+   l.print();
+   cout<<l.sz();
     return 0;
 }

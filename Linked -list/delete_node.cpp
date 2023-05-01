@@ -1,3 +1,5 @@
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -10,16 +12,18 @@ public:
    
 
   
-
 };
 
 class LinkedList{
     public:
     node * head;
+    int size;
 
     LinkedList(){
         head=NULL;
+        size=0;
     }
+    
 
     node *n(int value){
         node *x=new node;
@@ -30,6 +34,7 @@ class LinkedList{
     
     void insert_head(int val) {
     node *new_node = n(val);
+    size++;
         if(head==NULL){
           head =new_node;
         }
@@ -39,25 +44,8 @@ class LinkedList{
        }
     }
 
-    void insert_index(int index, int data ){
-
-        int index1=1;
-        node*a =head;
-        while(index1<index-1){
-
-          
-            index1++;
-             a=a->next;
-
-        }
-         node *next1=a->next;
-        node * x=n (data);
-        a->next=x;
-        x->next=next1;
-
-
-       // cout<< index1<<endl;
-
+    int sz(){
+        return size;
     }
 
    void print() {
@@ -69,44 +57,42 @@ class LinkedList{
         cout << endl;
     }
 
+//function to get reference of the node to delete
+node* getNode(int value) {
+    node *h=head;
 
-void rev(){
-
-    node * previus=NULL;
- 
-    node *current=head;
-    
-
-    while(current!=NULL){
-
-        node *after=current->next;
-
-        current->next=previus;
-        previus=current;
-        current=after;
-        
-
+    while(h->val != value)
+    { h = h->next;
     }
-    head=previus;
+    
+    return h;
 }
-   
-
+//delete function as per the question
+void deleteNode(node* t) {
+    t->val= t->next->val;
+    t->next = t->next->next;
+    
+}
 };
-
-
 
 
 int main(){
     LinkedList l;
-    LinkedList l2;
    
    l. insert_head(10);
-  
     l. insert_head(20);
-     l. insert_head(20);
-      l. insert_head(20);
-    l.insert_index(3,30);
-  // l.rev();
-    l.print();
+     l. insert_head(30);
+       l. insert_head(30);
+
+
+     node*g=l.getNode(30);
+
+    l.deleteNode(g);
+
+   
+    
+
+   l.print();
+  
     return 0;
 }
