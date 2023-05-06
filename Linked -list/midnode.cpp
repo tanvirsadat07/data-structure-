@@ -78,7 +78,7 @@ node*  mid2(){
     node *slow=head;
     node  * fast=head ;
 
-   while (fast &&fast->next)
+   while (fast&&fast->next)
     {
         fast=fast->next->next;
         slow=slow->next;
@@ -122,7 +122,8 @@ int main(){
    l. insert_head(10);
     l. insert_head(20);
     l. insert_head(30);
-     l. insert_head(30);
+     l. insert_head(40);
+      l. insert_head(50);
    node *x=l.mid2();
    cout<<x->val;
 
