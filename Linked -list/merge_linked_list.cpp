@@ -8,16 +8,16 @@ struct Node {
 };
 
 
-// void solve(Node *head1, Node* head2 ){
+void solve(Node *head1, Node* head2 ){
 
-// if(head1->data>head2->data){
-//     merge_sorted_lists(head2,head1);
+if(head1->data>head2->data){
+    merge_sorted_lists(head2,head1);
 
-//    }
-//    else{
-//     merge_sorted_lists(head1,head2);
-//    }
-// }
+   }
+   else{
+    merge_sorted_lists(head1,head2);
+   }
+}
 Node* merge_sorted_lists(Node* head1, Node* head2) {
    
 Node *end=head1;
